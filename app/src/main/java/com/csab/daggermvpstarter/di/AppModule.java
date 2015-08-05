@@ -1,7 +1,8 @@
-package com.csab.daggermvpstarter;
+package com.csab.daggermvpstarter.di;
 
-import android.app.Application;
+import android.content.Context;
 
+import com.csab.daggermvpstarter.App;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -20,8 +21,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public Application provideApplication() {
-        return app;
+    public Context provideApplicationContext() {
+        return this.app;
     }
 
     @Provides
