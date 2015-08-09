@@ -1,6 +1,6 @@
 package com.csab.daggermvpstarter.mvp.presenter;
 
-public interface ClickPresenter {
+public interface NoteListPresenter {
 
     void resume();
 

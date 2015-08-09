@@ -1,24 +1,17 @@
 package com.csab.daggermvpstarter;
 
-import com.csab.daggermvpstarter.mvp.presenter.ClickPresenterImpl;
-import com.csab.daggermvpstarter.mvp.view.ClickView;
+import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenterImpl;
+import com.csab.daggermvpstarter.mvp.view.NoteListView;
 
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
 
 public class ClickPresenterTest {
 
-    ClickView view = Mockito.mock(ClickView.class);
-    ClickPresenterImpl presenter = new ClickPresenterImpl(view);
-
-    @Test
-    public void presenterResumeTest() {
-        presenter.resume();
-        verify(view).setCountText(String.valueOf(0));
-    }
+    NoteListView view = Mockito.mock(NoteListView.class);
+    NoteListPresenterImpl presenter = new NoteListPresenterImpl(view);
 
     @Test
     public void presenterClickTest() {

@@ -1,4 +1,4 @@
-package com.csab.daggermvpstarter.di;
+package com.csab.daggermvpstarter.di.module;
 
 import android.content.Context;
 

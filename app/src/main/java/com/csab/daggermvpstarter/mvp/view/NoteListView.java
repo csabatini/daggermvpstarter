@@ -1,8 +1,6 @@
 package com.csab.daggermvpstarter.mvp.view;
 
-public interface ClickView {
-
-    void setCountText(String text);
+public interface NoteListView {
 
     void showToast(String text);
 }

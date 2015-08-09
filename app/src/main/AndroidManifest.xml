@@ -8,12 +8,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".ui.BaseActivity"
-            android:label="BaseActivity" />
-        <activity
-            android:name=".ui.ClickActivity"
-            android:label="@string/app_name" >
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

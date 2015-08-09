@@ -1,23 +1,21 @@
 package com.csab.daggermvpstarter.mvp.presenter;
 
-import com.csab.daggermvpstarter.mvp.view.ClickView;
+import com.csab.daggermvpstarter.mvp.view.NoteListView;
 
-public class ClickPresenterImpl implements ClickPresenter {
+public class NoteListPresenterImpl implements NoteListPresenter {
 
-    private ClickView clickView;
+    private NoteListView clickView;
 
-    public ClickPresenterImpl(ClickView clickView) {
+    public NoteListPresenterImpl(NoteListView clickView) {
         this.clickView = clickView;
     }
 
     @Override
     public void resume() {
-        clickView.setCountText(String.valueOf(0));
     }
 
     @Override
     public void pause() {
-
     }
 
     @Override
