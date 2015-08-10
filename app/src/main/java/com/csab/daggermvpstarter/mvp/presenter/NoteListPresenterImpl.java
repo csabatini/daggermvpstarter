@@ -4,10 +4,10 @@ import com.csab.daggermvpstarter.mvp.view.NoteListView;
 
 public class NoteListPresenterImpl implements NoteListPresenter {
 
-    private NoteListView clickView;
+    private NoteListView view;
 
-    public NoteListPresenterImpl(NoteListView clickView) {
-        this.clickView = clickView;
+    public NoteListPresenterImpl(NoteListView view) {
+        this.view = view;
     }
 
     @Override
@@ -20,6 +20,6 @@ public class NoteListPresenterImpl implements NoteListPresenter {
 
     @Override
     public void buttonClick() {
-        clickView.showToast("Clicked!");
+        view.showToast("Clicked!");
     }
 }

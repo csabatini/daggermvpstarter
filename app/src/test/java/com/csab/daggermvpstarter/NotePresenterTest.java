@@ -8,14 +8,9 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 
-public class ClickPresenterTest {
+public class NotePresenterTest {
 
     NoteListView view = Mockito.mock(NoteListView.class);
     NoteListPresenterImpl presenter = new NoteListPresenterImpl(view);
 
-    @Test
-    public void presenterClickTest() {
-        presenter.buttonClick();
-        verify(view).showToast("Clicked!");
-    }
 }
