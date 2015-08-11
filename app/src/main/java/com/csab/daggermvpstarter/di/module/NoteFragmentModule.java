@@ -1,6 +1,7 @@
 package com.csab.daggermvpstarter.di.module;
 
 import com.csab.daggermvpstarter.di.ActivityScope;
+import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenter;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenterImpl;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
 
@@ -22,7 +23,7 @@ public class NoteFragmentModule {
     }
 
     @Provides @ActivityScope
-    public NoteListPresenterImpl providePresenter(NoteListView view) {
+    public NoteListPresenter providePresenter(NoteListView view) {
         return new NoteListPresenterImpl(view);
     }
 }

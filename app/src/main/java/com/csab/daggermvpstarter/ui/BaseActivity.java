@@ -2,25 +2,30 @@ package com.csab.daggermvpstarter.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.csab.daggermvpstarter.App;
+import com.csab.daggermvpstarter.R;
 import com.csab.daggermvpstarter.di.component.AppComponent;
 import com.csab.daggermvpstarter.di.module.ActivityModule;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
-public abstract class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Inject
     Bus mBus;
 
+    private Toolbar mToolbar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
         getAppComponent().inject(this);
+        initializeToolbar();
     }
 
     @Override
@@ -48,5 +53,12 @@ public abstract class BaseActivity extends ActionBarActivity {
 
     protected ActivityModule getActivityModule() {
         return new ActivityModule(this);
+    }
+
+    protected abstract int getLayoutId();
+
+    private void initializeToolbar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
     }
 }

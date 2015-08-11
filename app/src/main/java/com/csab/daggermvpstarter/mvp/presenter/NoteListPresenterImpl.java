@@ -20,6 +20,6 @@ public class NoteListPresenterImpl implements NoteListPresenter {
 
     @Override
     public void buttonClick() {
-        view.showToast("Clicked!");
+        view.showDialog();
     }
 }

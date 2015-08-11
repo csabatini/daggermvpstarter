@@ -1,6 +1,7 @@
 package com.csab.daggermvpstarter.ui;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -8,11 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.support.v7.app.AlertDialog;
 
 import com.csab.daggermvpstarter.R;
 import com.csab.daggermvpstarter.di.component.DaggerNoteFragmentComponent;
 import com.csab.daggermvpstarter.di.module.NoteFragmentModule;
-import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenterImpl;
+import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenter;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
 
 import java.util.List;
@@ -23,10 +25,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NoteListFragment extends BaseFragment implements NoteListView {
+public class NoteListFragment extends BaseFragment
+        implements NoteListView, DialogInterface.OnClickListener {
 
     @Inject
-    NoteListPresenterImpl presenter;
+    NoteListPresenter presenter;
     @Inject
     Activity activity;
 
@@ -65,8 +68,25 @@ public class NoteListFragment extends BaseFragment implements NoteListView {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void showDialog() {
+        // TODO: move to within DialogFragment
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Test")
+                .setView(R.layout.dialog_add_note)
+                .setPositiveButton(R.string.btn_pos, NoteListFragment.this)
+                .setNegativeButton(R.string.btn_neg, NoteListFragment.this)
+                .create()
+                .show();
+    }
+
     @OnClick(R.id.fab)
     void relayClickToPresenter() {
         presenter.buttonClick();
+    }
+
+    @Override
+    public void onClick(DialogInterface dialogInterface, int i) {
+
     }
 }
