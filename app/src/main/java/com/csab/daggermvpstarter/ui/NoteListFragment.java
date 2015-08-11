@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.csab.daggermvpstarter.R;
-import com.csab.daggermvpstarter.di.component.DaggerNoteComponent;
-import com.csab.daggermvpstarter.di.module.NoteModule;
+import com.csab.daggermvpstarter.di.component.DaggerNoteFragmentComponent;
+import com.csab.daggermvpstarter.di.module.NoteFragmentModule;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenterImpl;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
 
@@ -26,12 +26,23 @@ import butterknife.OnClick;
 public class NoteListFragment extends BaseFragment implements NoteListView {
 
     @Inject
-    Activity activity;
-    @Inject
     NoteListPresenterImpl presenter;
+    @Inject
+    Activity activity;
 
     @Bind(R.id.fab)
     FloatingActionButton mFab;
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        DaggerNoteFragmentComponent.builder()
+                .appComponent(getAppComponent())
+                .activityModule(getActivityModule())
+                .noteFragmentModule(new NoteFragmentModule(this))
+                .build()
+                .inject(this);
+    }
 
     @Nullable
     @Override
@@ -40,15 +51,9 @@ public class NoteListFragment extends BaseFragment implements NoteListView {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        DaggerNoteComponent.builder()
-                .appComponent(getAppComponent())
-                .activityModule(getActivityModule())
-                .noteModule(new NoteModule(this))
-                .build()
-                .inject(this);
-        ButterKnife.bind(activity);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
     }
 
     @Override

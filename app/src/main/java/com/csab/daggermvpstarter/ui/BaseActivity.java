@@ -49,8 +49,4 @@ public abstract class BaseActivity extends ActionBarActivity {
     protected ActivityModule getActivityModule() {
         return new ActivityModule(this);
     }
-
-    protected void showToast(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
 }
