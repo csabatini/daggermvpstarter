@@ -9,10 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import android.support.v7.app.AlertDialog;
 
 import com.csab.daggermvpstarter.R;
+import com.csab.daggermvpstarter.di.component.AppComponent;
 import com.csab.daggermvpstarter.di.component.DaggerNoteFragmentComponent;
+import com.csab.daggermvpstarter.di.module.ActivityModule;
 import com.csab.daggermvpstarter.di.module.NoteFragmentModule;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenter;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
@@ -25,8 +26,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NoteListFragment extends BaseFragment
-        implements NoteListView, DialogInterface.OnClickListener {
+public class NoteListFragment extends BaseFragment implements NoteListView {
 
     @Inject
     NoteListPresenter presenter;
@@ -35,17 +35,6 @@ public class NoteListFragment extends BaseFragment
 
     @Bind(R.id.fab)
     FloatingActionButton mFab;
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        DaggerNoteFragmentComponent.builder()
-                .appComponent(getAppComponent())
-                .activityModule(getActivityModule())
-                .noteFragmentModule(new NoteFragmentModule(this))
-                .build()
-                .inject(this);
-    }
 
     @Nullable
     @Override
@@ -70,14 +59,8 @@ public class NoteListFragment extends BaseFragment
 
     @Override
     public void showDialog() {
-        // TODO: move to within DialogFragment
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle("Test")
-                .setView(R.layout.dialog_add_note)
-                .setPositiveButton(R.string.btn_pos, NoteListFragment.this)
-                .setNegativeButton(R.string.btn_neg, NoteListFragment.this)
-                .create()
-                .show();
+        NoteDialogFragment dialog = NoteDialogFragment.newInstance();
+        dialog.show(getFragmentManager(), null);
     }
 
     @OnClick(R.id.fab)
@@ -86,7 +69,12 @@ public class NoteListFragment extends BaseFragment
     }
 
     @Override
-    public void onClick(DialogInterface dialogInterface, int i) {
-
+    protected void setupGraph(AppComponent appComponent, ActivityModule activityModule) {
+        DaggerNoteFragmentComponent.builder()
+                .appComponent(getAppComponent())
+                .activityModule(getActivityModule())
+                .noteFragmentModule(new NoteFragmentModule(this))
+                .build()
+                .inject(this);
     }
 }
