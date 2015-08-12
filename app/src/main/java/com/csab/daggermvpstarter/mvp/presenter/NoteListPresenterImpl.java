@@ -1,13 +1,19 @@
 package com.csab.daggermvpstarter.mvp.presenter;
 
+import com.csab.daggermvpstarter.data.NoteRepo;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
+
+import javax.inject.Inject;
 
 public class NoteListPresenterImpl implements NoteListPresenter {
 
-    private NoteListView view;
+    @Inject
+    NoteListView view;
+    @Inject
+    NoteRepo repo;
 
-    public NoteListPresenterImpl(NoteListView view) {
-        this.view = view;
+    @Inject
+    public NoteListPresenterImpl(NoteListView view, NoteRepo repo) {
     }
 
     @Override
@@ -21,5 +27,6 @@ public class NoteListPresenterImpl implements NoteListPresenter {
     @Override
     public void buttonClick() {
         view.showDialog();
+        repo.log("Test logging click");
     }
 }

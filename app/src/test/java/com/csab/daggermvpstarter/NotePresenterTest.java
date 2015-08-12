@@ -10,7 +10,5 @@ import static org.mockito.Mockito.*;
 
 public class NotePresenterTest {
 
-    NoteListView view = Mockito.mock(NoteListView.class);
-    NoteListPresenterImpl presenter = new NoteListPresenterImpl(view);
 
 }
