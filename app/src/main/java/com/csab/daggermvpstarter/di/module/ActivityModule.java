@@ -1,6 +1,8 @@
 package com.csab.daggermvpstarter.di.module;
 
 import android.app.Activity;
+import android.support.v4.app.FragmentManager;
+import android.view.LayoutInflater;
 
 import com.csab.daggermvpstarter.di.ActivityScope;
 
@@ -16,7 +18,13 @@ public class ActivityModule {
     }
 
     @Provides @ActivityScope
-    Activity provideActivityContext() {
+    public Activity provideActivityContext() {
         return this.activity;
     }
+
+    @Provides @ActivityScope
+    public LayoutInflater provideLayoutInflater() {
+        return LayoutInflater.from(activity);
+    }
+
 }

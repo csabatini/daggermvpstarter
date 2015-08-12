@@ -2,12 +2,12 @@ package com.csab.daggermvpstarter.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
 
 import com.csab.daggermvpstarter.di.component.AppComponent;
 import com.csab.daggermvpstarter.di.module.ActivityModule;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseDialogFragment extends DialogFragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
