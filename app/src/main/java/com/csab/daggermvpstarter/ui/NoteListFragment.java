@@ -1,7 +1,6 @@
 package com.csab.daggermvpstarter.ui;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -12,9 +11,9 @@ import android.widget.Toast;
 
 import com.csab.daggermvpstarter.R;
 import com.csab.daggermvpstarter.di.component.AppComponent;
-import com.csab.daggermvpstarter.di.component.DaggerNoteFragmentComponent;
+import com.csab.daggermvpstarter.di.component.DaggerNoteListComponent;
 import com.csab.daggermvpstarter.di.module.ActivityModule;
-import com.csab.daggermvpstarter.di.module.NoteFragmentModule;
+import com.csab.daggermvpstarter.di.module.NoteListModule;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenter;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
 
@@ -49,6 +48,11 @@ public class NoteListFragment extends BaseFragment implements NoteListView {
     }
 
     @Override
+    public void onResume() {
+        presenter.resume();
+    }
+
+    @Override
     public void showNotes(List<String> notes) {
     }
 
@@ -70,10 +74,10 @@ public class NoteListFragment extends BaseFragment implements NoteListView {
 
     @Override
     protected void setupGraph(AppComponent appComponent, ActivityModule activityModule) {
-        DaggerNoteFragmentComponent.builder()
+        DaggerNoteListComponent.builder()
                 .appComponent(getAppComponent())
                 .activityModule(getActivityModule())
-                .noteFragmentModule(new NoteFragmentModule(this))
+                .noteListModule(new NoteListModule(this))
                 .build()
                 .inject(this);
     }

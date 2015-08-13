@@ -12,12 +12,16 @@ public class NoteListPresenterImpl implements NoteListPresenter {
     @Inject
     NoteRepo repo;
 
+    public NoteListPresenterImpl() {
+    }
+
     @Inject
     public NoteListPresenterImpl(NoteListView view, NoteRepo repo) {
     }
 
     @Override
     public void resume() {
+        repo.getNotes();
     }
 
     @Override
@@ -27,6 +31,12 @@ public class NoteListPresenterImpl implements NoteListPresenter {
     @Override
     public void buttonClick() {
         view.showDialog();
-        repo.log("Test logging click");
+    }
+
+    public void setView(NoteListView view) {
+        this.view = view;
+    }
+    public void setRepo(NoteRepo repo) {
+        this.repo = repo;
     }
 }

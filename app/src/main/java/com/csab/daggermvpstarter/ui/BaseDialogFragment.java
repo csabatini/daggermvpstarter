@@ -10,8 +10,8 @@ import com.csab.daggermvpstarter.di.module.ActivityModule;
 public abstract class BaseDialogFragment extends DialogFragment {
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setupGraph(getAppComponent(), getActivityModule());
     }
 

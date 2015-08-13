@@ -11,6 +11,10 @@ public class NoteDialogPresenterImpl implements NoteDialogPresenter {
     @Inject
     NoteDialogView view;
 
+    public NoteDialogPresenterImpl() {
+
+    }
+
     @Inject
     public NoteDialogPresenterImpl(NoteDialogView view) {
     }
@@ -27,17 +31,17 @@ public class NoteDialogPresenterImpl implements NoteDialogPresenter {
 
     @Override
     public void saveClick() {
-        Log.d("DialogPresenter", "Save clicked!");
         String text = view.captureInputText();
         // use interactor for logic
-        Log.d("DialogPresenter", text);
         view.dismissDialog();
     }
 
     @Override
     public void cancelClick() {
-        Log.d("DialogPresenter", "Cancel clicked!");
         view.dismissDialog();
     }
 
+    public void setView(NoteDialogView view) {
+        this.view = view;
+    }
 }

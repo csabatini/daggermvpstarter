@@ -11,11 +11,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class NoteFragmentModule {
+public class NoteListModule {
 
     private NoteListView view;
 
-    public NoteFragmentModule(NoteListView view) {
+    public NoteListModule(NoteListView view) {
         this.view = view;
     }
 

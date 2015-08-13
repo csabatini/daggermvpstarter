@@ -1,12 +1,15 @@
 package com.csab.daggermvpstarter.ui;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.csab.daggermvpstarter.R;
@@ -36,16 +39,22 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         presenter.create();
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return alertDialog;
     }
 
     @Override
     public void createDialog() {
         View view = layoutInflater.inflate(R.layout.dialog_add_note, null);
         alertDialog = new AlertDialog.Builder(activity)
-                .setTitle(R.string.app_name)
+                .setTitle(R.string.add_note)
                 .setView(view)
                 .setPositiveButton(R.string.btn_pos, new DialogInterface.OnClickListener() {
                     @Override
@@ -60,6 +69,11 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
                     }
                 })
                 .create();
+        alertDialog.getWindow()
+                .clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+                            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        alertDialog.getWindow()
+                .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE );
         editText = (EditText) view.findViewById(R.id.noteText);
     }
 

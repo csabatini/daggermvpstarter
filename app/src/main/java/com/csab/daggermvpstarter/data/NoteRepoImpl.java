@@ -23,12 +23,6 @@ public class NoteRepoImpl implements NoteRepo {
 
     @Override
     public void putNote(Note note) {
-
-    }
-
-    @Override
-    public void log(String msg) {
-        Log.d("RepoImpl", msg);
     }
 
     @Override

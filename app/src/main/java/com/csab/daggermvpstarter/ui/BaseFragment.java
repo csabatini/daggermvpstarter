@@ -10,9 +10,9 @@ import com.csab.daggermvpstarter.di.module.ActivityModule;
 public abstract class BaseFragment extends Fragment {
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        setupGraph(getAppComponent(), getActivityModule());
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+            setupGraph(getAppComponent(), getActivityModule());
     }
 
     protected AppComponent getAppComponent() {
