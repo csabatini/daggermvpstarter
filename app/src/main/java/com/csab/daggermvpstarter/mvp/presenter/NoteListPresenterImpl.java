@@ -1,7 +1,10 @@
 package com.csab.daggermvpstarter.mvp.presenter;
 
 import com.csab.daggermvpstarter.data.NoteRepo;
+import com.csab.daggermvpstarter.mvp.model.Note;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -21,7 +24,8 @@ public class NoteListPresenterImpl implements NoteListPresenter {
 
     @Override
     public void resume() {
-        repo.getNotes();
+        List<Note> notes = repo.getNotes();
+        view.showNotes(notes);
     }
 
     @Override
@@ -39,4 +43,5 @@ public class NoteListPresenterImpl implements NoteListPresenter {
     public void setRepo(NoteRepo repo) {
         this.repo = repo;
     }
+
 }

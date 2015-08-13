@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.csab.daggermvpstarter.R;
@@ -14,6 +17,7 @@ import com.csab.daggermvpstarter.di.component.AppComponent;
 import com.csab.daggermvpstarter.di.component.DaggerNoteListComponent;
 import com.csab.daggermvpstarter.di.module.ActivityModule;
 import com.csab.daggermvpstarter.di.module.NoteListModule;
+import com.csab.daggermvpstarter.mvp.model.Note;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenter;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
 
@@ -33,7 +37,7 @@ public class NoteListFragment extends BaseFragment implements NoteListView {
     Activity activity;
 
     @Bind(R.id.fab)
-    FloatingActionButton mFab;
+    FloatingActionButton fab;
 
     @Nullable
     @Override
@@ -53,7 +57,7 @@ public class NoteListFragment extends BaseFragment implements NoteListView {
     }
 
     @Override
-    public void showNotes(List<String> notes) {
+    public void showNotes(List<Note> notes) {
     }
 
     @Override
