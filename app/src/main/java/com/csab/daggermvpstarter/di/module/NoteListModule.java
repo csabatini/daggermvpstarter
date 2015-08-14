@@ -1,5 +1,6 @@
 package com.csab.daggermvpstarter.di.module;
 
+import com.csab.daggermvpstarter.adapter.NoteRecyclerAdapter;
 import com.csab.daggermvpstarter.data.NoteRepo;
 import com.csab.daggermvpstarter.data.NoteRepoImpl;
 import com.csab.daggermvpstarter.di.ActivityScope;
@@ -31,4 +32,5 @@ public class NoteListModule {
 
     @Provides @ActivityScope
     public NoteListPresenter providePresenter(NoteListPresenterImpl presenter) { return presenter; }
+
 }

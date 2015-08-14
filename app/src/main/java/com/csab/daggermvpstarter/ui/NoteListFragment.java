@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.csab.daggermvpstarter.R;
+import com.csab.daggermvpstarter.adapter.NoteRecyclerAdapter;
 import com.csab.daggermvpstarter.di.component.AppComponent;
 import com.csab.daggermvpstarter.di.component.DaggerNoteListComponent;
 import com.csab.daggermvpstarter.di.module.ActivityModule;
@@ -35,9 +36,13 @@ public class NoteListFragment extends BaseFragment implements NoteListView {
     NoteListPresenter presenter;
     @Inject
     Activity activity;
+    @Inject
+    NoteRecyclerAdapter adapter;
 
     @Bind(R.id.fab)
     FloatingActionButton fab;
+    @Bind(R.id.recycler)
+    RecyclerView recyclerView;
 
     @Nullable
     @Override
@@ -49,15 +54,21 @@ public class NoteListFragment extends BaseFragment implements NoteListView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onResume() {
+        super.onResume();
         presenter.resume();
     }
 
     @Override
     public void showNotes(List<Note> notes) {
+        adapter.updateItems(notes);
     }
 
     @Override

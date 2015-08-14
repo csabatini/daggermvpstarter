@@ -12,6 +12,11 @@ public class Note {
         this.createdDate = new Date();
     }
 
+    public Note(String contents, Date createdDate) {
+        this.contents = contents;
+        this.createdDate = createdDate;
+    }
+
     public String getContents() {
         return contents;
     }
