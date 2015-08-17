@@ -1,5 +1,7 @@
 package com.csab.daggermvpstarter.di.component;
 
+import com.csab.daggermvpstarter.adapter.NoteRecyclerAdapter;
+import com.csab.daggermvpstarter.data.NoteInteractor;
 import com.csab.daggermvpstarter.di.ActivityScope;
 import com.csab.daggermvpstarter.di.module.ActivityModule;
 import com.csab.daggermvpstarter.di.module.NoteListModule;
@@ -15,4 +17,6 @@ public interface NoteListComponent extends ActivityComponent {
     void inject(NoteListFragment noteListFragment);
     NoteListView view();
     NoteListPresenter presenter();
+    NoteRecyclerAdapter adapter();
+    NoteInteractor interactor();
 }

@@ -4,7 +4,9 @@ import com.csab.daggermvpstarter.mvp.model.Note;
 
 import java.util.List;
 
-public interface NoteRepo {
+import rx.Observable;
+
+public interface NoteInteractor {
     void createNote(String text);
-    List<Note> getNotes();
+    Observable<List<Note>> getNotes();
 }

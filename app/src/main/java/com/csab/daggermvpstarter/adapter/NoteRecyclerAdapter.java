@@ -1,6 +1,7 @@
 package com.csab.daggermvpstarter.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,18 +20,15 @@ import butterknife.ButterKnife;
 
 public class NoteRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    @Inject
-    LayoutInflater inflater;
-
     private List<Note> notes = Collections.emptyList();
 
-    @Inject
     public NoteRecyclerAdapter() {
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.note_list_item, parent);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.note_list_item, parent, false);
         return new NoteRecyclerAdapter.ViewHolder(view);
     }
 
@@ -48,6 +46,7 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void updateItems(List<Note> notes) {
         this.notes = notes;
         notifyDataSetChanged();
+        Log.d("RecyclerAdapter", "Updating items: " + notes.size());
     }
 
     public void renderNote(Note note, ViewHolder holder) {

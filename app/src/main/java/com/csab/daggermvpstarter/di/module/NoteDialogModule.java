@@ -1,5 +1,7 @@
 package com.csab.daggermvpstarter.di.module;
 
+import com.csab.daggermvpstarter.data.NoteInteractor;
+import com.csab.daggermvpstarter.data.NoteInteractorImpl;
 import com.csab.daggermvpstarter.data.NoteRepo;
 import com.csab.daggermvpstarter.data.NoteRepoImpl;
 import com.csab.daggermvpstarter.di.ActivityScope;
@@ -25,8 +27,8 @@ public class NoteDialogModule {
     }
 
     @Provides @ActivityScope
-    public NoteRepo provideRepo(NoteRepoImpl repo) {
-        return repo;
+    public NoteInteractor provideInteractor(NoteInteractorImpl interactor) {
+        return interactor;
     }
 
     @Provides @ActivityScope

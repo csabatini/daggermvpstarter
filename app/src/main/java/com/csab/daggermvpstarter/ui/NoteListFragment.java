@@ -1,19 +1,21 @@
 package com.csab.daggermvpstarter.ui;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.csab.daggermvpstarter.R;
 import com.csab.daggermvpstarter.adapter.NoteRecyclerAdapter;
+import com.csab.daggermvpstarter.data.DatabaseHelper;
 import com.csab.daggermvpstarter.di.component.AppComponent;
 import com.csab.daggermvpstarter.di.component.DaggerNoteListComponent;
 import com.csab.daggermvpstarter.di.module.ActivityModule;
@@ -30,7 +32,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NoteListFragment extends BaseFragment implements NoteListView {
+
+public class NoteListFragment extends BaseFragment
+        implements NoteListView {
 
     @Inject
     NoteListPresenter presenter;
@@ -54,9 +58,7 @@ public class NoteListFragment extends BaseFragment implements NoteListView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
     }
 

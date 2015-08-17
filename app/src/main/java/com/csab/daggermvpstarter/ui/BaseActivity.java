@@ -9,14 +9,8 @@ import com.csab.daggermvpstarter.App;
 import com.csab.daggermvpstarter.R;
 import com.csab.daggermvpstarter.di.component.AppComponent;
 import com.csab.daggermvpstarter.di.module.ActivityModule;
-import com.squareup.otto.Bus;
-
-import javax.inject.Inject;
 
 public abstract class BaseActivity extends AppCompatActivity {
-
-    @Inject
-    Bus mBus;
 
     private Toolbar mToolbar;
 
@@ -26,18 +20,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutId());
         getAppComponent().inject(this);
         initializeToolbar();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mBus.register(this);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mBus.unregister(this);
     }
 
     protected void addFragment(int containerId, Fragment fragment) {

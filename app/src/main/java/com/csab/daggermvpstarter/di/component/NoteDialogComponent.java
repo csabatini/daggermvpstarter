@@ -1,5 +1,6 @@
 package com.csab.daggermvpstarter.di.component;
 
+import com.csab.daggermvpstarter.data.NoteInteractor;
 import com.csab.daggermvpstarter.di.ActivityScope;
 import com.csab.daggermvpstarter.di.module.ActivityModule;
 import com.csab.daggermvpstarter.di.module.NoteDialogModule;
@@ -15,4 +16,5 @@ public interface NoteDialogComponent {
     void inject(NoteDialogFragment noteDialogFragment);
     NoteDialogView view();
     NoteDialogPresenter presenter();
+    NoteInteractor interactor();
 }

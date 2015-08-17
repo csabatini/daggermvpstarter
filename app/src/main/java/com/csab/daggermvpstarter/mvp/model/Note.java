@@ -2,6 +2,7 @@ package com.csab.daggermvpstarter.mvp.model;
 
 import java.util.Date;
 
+// TODO implement joda time to format/standardize dates
 public class Note {
 
     private String contents;
@@ -32,4 +33,5 @@ public class Note {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
+
 }

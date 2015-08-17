@@ -1,7 +1,6 @@
 package com.csab.daggermvpstarter.mvp.presenter;
 
-import com.csab.daggermvpstarter.data.NoteRepo;
-import com.csab.daggermvpstarter.mvp.model.Note;
+import com.csab.daggermvpstarter.data.NoteInteractor;
 import com.csab.daggermvpstarter.mvp.view.NoteDialogView;
 
 import javax.inject.Inject;
@@ -11,13 +10,13 @@ public class NoteDialogPresenterImpl implements NoteDialogPresenter {
     @Inject
     NoteDialogView view;
     @Inject
-    NoteRepo repo;
+    NoteInteractor interactor;
 
     public NoteDialogPresenterImpl() {
     }
 
     @Inject
-    public NoteDialogPresenterImpl(NoteDialogView view, NoteRepo repo) {
+    public NoteDialogPresenterImpl(NoteDialogView view) {
     }
 
     @Override
@@ -33,8 +32,7 @@ public class NoteDialogPresenterImpl implements NoteDialogPresenter {
     @Override
     public void saveClick() {
         String text = view.captureInputText();
-        // use interactor for logic
-        repo.putNote(new Note(text));
+        interactor.createNote(text);
         view.dismissDialog();
     }
 
@@ -47,7 +45,4 @@ public class NoteDialogPresenterImpl implements NoteDialogPresenter {
         this.view = view;
     }
 
-    public void setRepo(NoteRepo repo) {
-        this.repo = repo;
-    }
 }

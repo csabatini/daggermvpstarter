@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.csab.daggermvpstarter.R;
 import com.csab.daggermvpstarter.di.component.AppComponent;
@@ -48,6 +49,11 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return alertDialog;
+    }
+
+    @Override
+    public void showToast(String message) {
+        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

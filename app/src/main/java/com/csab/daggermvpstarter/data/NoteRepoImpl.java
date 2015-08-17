@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -23,9 +24,9 @@ public class NoteRepoImpl implements NoteRepo {
     }
 
     @Override
-    public void putNote(Note note) {
+    public void createNote(String text) {
         List<Note> notes = getNotes();
-        notes.add(note);
+        notes.add(new Note(text));
 
         String json = gson.toJson(notes, new TypeToken<List<Note>>(){}.getType());
         putSerializedPreferenceString(json);
@@ -35,7 +36,7 @@ public class NoteRepoImpl implements NoteRepo {
     public List<Note> getNotes() {
         String json = getSerializedPreferenceString();
         if (json.isEmpty()) {
-            return new ArrayList<Note>();
+            return new ArrayList<>();
         } else {
             return gson.fromJson(json, new TypeToken<List<Note>>(){}.getType());
         }

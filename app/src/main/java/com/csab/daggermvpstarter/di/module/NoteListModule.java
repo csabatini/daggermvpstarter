@@ -1,8 +1,8 @@
 package com.csab.daggermvpstarter.di.module;
 
 import com.csab.daggermvpstarter.adapter.NoteRecyclerAdapter;
-import com.csab.daggermvpstarter.data.NoteRepo;
-import com.csab.daggermvpstarter.data.NoteRepoImpl;
+import com.csab.daggermvpstarter.data.NoteInteractor;
+import com.csab.daggermvpstarter.data.NoteInteractorImpl;
 import com.csab.daggermvpstarter.di.ActivityScope;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenter;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenterImpl;
@@ -26,11 +26,16 @@ public class NoteListModule {
     }
 
     @Provides @ActivityScope
-    public NoteRepo provideRepo(NoteRepoImpl repo) {
-        return repo;
+    public NoteInteractor provideInteractor(NoteInteractorImpl interactor) {
+        return interactor;
     }
 
     @Provides @ActivityScope
     public NoteListPresenter providePresenter(NoteListPresenterImpl presenter) { return presenter; }
+
+    @Provides @ActivityScope
+    public NoteRecyclerAdapter provideAdapter() {
+        return new NoteRecyclerAdapter();
+    }
 
 }
