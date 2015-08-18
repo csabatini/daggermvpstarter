@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class NoteListPresenterImpl extends RxPresenter implements NoteListPresenter {
 
@@ -28,6 +29,7 @@ public class NoteListPresenterImpl extends RxPresenter implements NoteListPresen
 
     @Override
     public void resume() {
+        Timber.d("resume - subscribing!");
         add(interactor.getNotes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -36,6 +38,7 @@ public class NoteListPresenterImpl extends RxPresenter implements NoteListPresen
 
     @Override
     public void pause() {
+        Timber.d("pause - unsubscribing!");
         unsubscribe();
     }
 
@@ -57,11 +60,13 @@ public class NoteListPresenterImpl extends RxPresenter implements NoteListPresen
 
         @Override
         public void onError(Throwable e) {
+            Timber.e(e, "onError retrieving notes");
             view.showToast("Error loading notes");
         }
 
         @Override
         public void onNext(List<Note> notes) {
+            Timber.d("onNext with list size %d", notes.size());
             view.showNotes(notes);
         }
     }

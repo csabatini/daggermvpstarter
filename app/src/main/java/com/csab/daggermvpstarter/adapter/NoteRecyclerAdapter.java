@@ -1,7 +1,6 @@
 package com.csab.daggermvpstarter.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +45,6 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void updateItems(List<Note> notes) {
         this.notes = notes;
         notifyDataSetChanged();
-        Log.d("RecyclerAdapter", "Updating items: " + notes.size());
     }
 
     public void renderNote(Note note, ViewHolder holder) {

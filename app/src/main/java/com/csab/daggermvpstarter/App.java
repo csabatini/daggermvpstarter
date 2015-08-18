@@ -7,6 +7,8 @@ import com.csab.daggermvpstarter.di.component.DaggerAppComponent;
 import com.csab.daggermvpstarter.di.module.AppModule;
 import com.csab.daggermvpstarter.di.module.DbModule;
 
+import timber.log.Timber;
+
 public class App extends Application {
 
     private AppComponent component;
@@ -15,6 +17,9 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         setupGraph();
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
     }
 
     private void setupGraph() {

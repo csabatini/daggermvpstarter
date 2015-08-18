@@ -26,7 +26,6 @@ public class NoteDialogPresenterImpl implements NoteDialogPresenter {
 
     @Override
     public void resume() {
-
     }
 
     @Override

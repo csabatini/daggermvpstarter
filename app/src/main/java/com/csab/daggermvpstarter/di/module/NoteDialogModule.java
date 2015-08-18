@@ -2,8 +2,6 @@ package com.csab.daggermvpstarter.di.module;
 
 import com.csab.daggermvpstarter.data.NoteInteractor;
 import com.csab.daggermvpstarter.data.NoteInteractorImpl;
-import com.csab.daggermvpstarter.data.NoteRepo;
-import com.csab.daggermvpstarter.data.NoteRepoImpl;
 import com.csab.daggermvpstarter.di.ActivityScope;
 import com.csab.daggermvpstarter.mvp.presenter.NoteDialogPresenter;
 import com.csab.daggermvpstarter.mvp.presenter.NoteDialogPresenterImpl;

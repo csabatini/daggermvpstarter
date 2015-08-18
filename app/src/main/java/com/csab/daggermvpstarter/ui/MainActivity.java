@@ -1,7 +1,9 @@
 package com.csab.daggermvpstarter.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.Menu;
+import android.view.View;
 
 import com.csab.daggermvpstarter.R;
 
@@ -10,7 +12,10 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addFragment(R.id.container, new NoteListFragment());
+        Fragment fragment =
+                getSupportFragmentManager().findFragmentById(R.id.container);
+        if (fragment == null)
+            addFragment(R.id.container, new NoteListFragment());
     }
 
     @Override

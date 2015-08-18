@@ -1,7 +1,6 @@
 package com.csab.daggermvpstarter.data;
 
 import android.content.ContentValues;
-import android.util.Log;
 
 import com.csab.daggermvpstarter.mvp.model.Note;
 import com.squareup.sqlbrite.BriteDatabase;
@@ -21,7 +20,6 @@ public class NoteInteractorImpl implements NoteInteractor {
     }
 
     public void createNote(String text) {
-        Log.d("NoteInteractor", "creating note: " + text);
         Note note = new Note(text);
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COL_CONTENTS, note.getContents());
@@ -30,7 +28,6 @@ public class NoteInteractorImpl implements NoteInteractor {
     }
 
     public Observable<List<Note>> getNotes() {
-        Log.d("NoteInteractor", "return observable");
         return db.createQuery(DatabaseHelper.NOTE_TABLE, "SELECT * FROM " + DatabaseHelper.NOTE_TABLE)
                 .map(DataMapper.NOTE_MAP);
     }
