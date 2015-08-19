@@ -12,6 +12,10 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observable;
+import rx.android.plugins.RxAndroidPlugins;
+import rx.plugins.RxJavaPlugins;
+
 import static org.mockito.Mockito.*;
 
 public class NoteListPresenterImplTest {
@@ -27,13 +31,15 @@ public class NoteListPresenterImplTest {
         presenter = new NoteListPresenterImpl();
         presenter.setView(view);
         presenter.setInteractor(interactor);
+        RxJavaPlugins.getInstance().registerSchedulersHook(new RxJavaTestingSchedulersHook());
+        RxAndroidPlugins.getInstance().reset();
+        RxAndroidPlugins.getInstance().registerSchedulersHook(new RxAndroidTestingSchedulersHook());
     }
 
     @Test
     public void presenterResumeFetchesNotesTest() {
         /*
         TODO: update for interactor/rx
-        List<Note> list = new ArrayList<>();
 
         when(repo.getNotes()).thenReturn(list);
         presenter.resume();
@@ -42,6 +48,10 @@ public class NoteListPresenterImplTest {
         verifyNoMoreInteractions(view);
         verifyNoMoreInteractions(repo);
         */
+        List<Note> notes = new ArrayList<>();
+        when(interactor.getNotes()).thenReturn(Observable.just(notes));
+        presenter.resume();
+        verify(view).showNotes(notes);
     }
 
     @Test
