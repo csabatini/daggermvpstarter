@@ -1,9 +1,10 @@
-package com.csab.daggermvpstarter;
+package com.csab.daggermvpstarter.rx;
 
 import rx.Scheduler;
 import rx.android.plugins.RxAndroidSchedulersHook;
 import rx.functions.Action0;
 import rx.schedulers.Schedulers;
+
 
 public class RxAndroidTestingSchedulersHook extends RxAndroidSchedulersHook {
 

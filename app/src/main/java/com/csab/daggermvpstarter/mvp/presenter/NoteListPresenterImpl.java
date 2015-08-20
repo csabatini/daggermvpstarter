@@ -32,7 +32,8 @@ public class NoteListPresenterImpl extends RxPresenter implements NoteListPresen
         Timber.d("resume - subscribing!");
         add(interactor.getNotes()
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                // TODO: get schedulers hook working with AndroidSchedulers
+                //.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new NoteSubscriber()));
     }
 
@@ -53,7 +54,7 @@ public class NoteListPresenterImpl extends RxPresenter implements NoteListPresen
 
     public void setInteractor(NoteInteractor interactor) { this.interactor = interactor; }
 
-    private class NoteSubscriber extends Subscriber<List<Note>> {
+    public class NoteSubscriber extends Subscriber<List<Note>> {
         @Override
         public void onCompleted() {
         }

@@ -1,4 +1,4 @@
-package com.csab.daggermvpstarter;
+package com.csab.daggermvpstarter.rx;
 
 import rx.Scheduler;
 import rx.functions.Action0;
@@ -10,7 +10,7 @@ public class RxJavaTestingSchedulersHook extends RxJavaSchedulersHook {
     /**
     * Testing hook that will return the immediate instead of the IO scheduler
     */
-    protected RxJavaTestingSchedulersHook() {
+    public RxJavaTestingSchedulersHook() {
         super();
     }
 
