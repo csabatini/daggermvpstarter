@@ -4,4 +4,5 @@ public interface NoteListPresenter {
     void resume();
     void pause();
     void buttonClick();
+    void noteClick(int position);
 }

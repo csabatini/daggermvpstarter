@@ -34,8 +34,8 @@ public class NoteListModule {
     public NoteListPresenter providePresenter(NoteListPresenterImpl presenter) { return presenter; }
 
     @Provides @ActivityScope
-    public NoteRecyclerAdapter provideAdapter() {
-        return new NoteRecyclerAdapter();
+    public NoteRecyclerAdapter provideAdapter(NoteListPresenter presenter) {
+        return new NoteRecyclerAdapter(presenter);
     }
 
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -77,6 +78,12 @@ public class NoteListFragment extends BaseFragment
     }
 
     @Override
+    public void showSnack(int resId) {
+        Snackbar.make(fab, activity.getString(resId), Snackbar.LENGTH_SHORT)
+                .show();
+    }
+
+    @Override
     public void showDialog() {
         NoteDialogFragment dialog = NoteDialogFragment.newInstance();
         dialog.show(getFragmentManager(), null);
@@ -90,8 +97,8 @@ public class NoteListFragment extends BaseFragment
     @Override
     protected void setupGraph(AppComponent appComponent, ActivityModule activityModule) {
         DaggerNoteListComponent.builder()
-                .appComponent(getAppComponent())
-                .activityModule(getActivityModule())
+                .appComponent(appComponent)
+                .activityModule(activityModule)
                 .noteListModule(new NoteListModule(this))
                 .build()
                 .inject(this);

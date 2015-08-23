@@ -1,5 +1,6 @@
 package com.csab.daggermvpstarter.mvp.presenter;
 
+import com.csab.daggermvpstarter.R;
 import com.csab.daggermvpstarter.data.NoteInteractor;
 import com.csab.daggermvpstarter.mvp.model.Note;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
@@ -15,16 +16,13 @@ import timber.log.Timber;
 
 public class NoteListPresenterImpl extends RxPresenter implements NoteListPresenter {
 
-    @Inject
-    NoteListView view;
-    @Inject
-    NoteInteractor interactor;
-
-    public NoteListPresenterImpl() {
-    }
+    private NoteListView view;
+    private NoteInteractor interactor;
 
     @Inject
     public NoteListPresenterImpl(NoteListView view, NoteInteractor interactor) {
+        this.view = view;
+        this.interactor = interactor;
     }
 
     @Override
@@ -48,11 +46,10 @@ public class NoteListPresenterImpl extends RxPresenter implements NoteListPresen
         view.showDialog();
     }
 
-    public void setView(NoteListView view) {
-        this.view = view;
+    @Override
+    public void noteClick(int position) {
+        view.showSnack(R.string.note_clicked);
     }
-
-    public void setInteractor(NoteInteractor interactor) { this.interactor = interactor; }
 
     public class NoteSubscriber extends Subscriber<List<Note>> {
         @Override

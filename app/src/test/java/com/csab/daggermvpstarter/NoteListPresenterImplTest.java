@@ -7,7 +7,8 @@ import com.csab.daggermvpstarter.mvp.view.NoteListView;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,25 +20,29 @@ import static org.junit.Assert.*;
 
 public class NoteListPresenterImplTest {
 
+    @Mock
     private NoteListView view;
+    @Mock
     private NoteInteractor interactor;
+
     private NoteListPresenterImpl presenter;
 
     @Before
     public void setup() {
-        view = Mockito.mock(NoteListView.class);
-        interactor = Mockito.mock(NoteInteractor.class);
-        presenter = new NoteListPresenterImpl();
-        presenter.setView(view);
-        presenter.setInteractor(interactor);
+        MockitoAnnotations.initMocks(this);
+        presenter = new NoteListPresenterImpl(view, interactor);
     }
 
     @Test
-    public void presenterResumeFetchesNotesTest() {
+    public void presenterResumeFetchesAndDisplaysNotesTest() {
         List<Note> notes = new ArrayList<>();
         when(interactor.getNotes()).thenReturn(Observable.just(notes));
+
         presenter.resume();
+        verify(interactor).getNotes();
         verify(view).showNotes(notes);
+        verifyNoMoreInteractions(interactor);
+        verifyNoMoreInteractions(view);
     }
 
     @Test
@@ -46,6 +51,13 @@ public class NoteListPresenterImplTest {
         verify(view).showDialog();
         verifyNoMoreInteractions(view);
         verifyNoMoreInteractions(interactor);
+    }
+
+    @Test
+    public void presenterNoteClickShowsToast() {
+        presenter.noteClick(1);
+        verify(view).showSnack(R.string.note_clicked);
+        verifyNoMoreInteractions(view);
     }
 
 }
