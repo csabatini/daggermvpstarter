@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.csab.daggermvpstarter.R;
 import com.csab.daggermvpstarter.di.component.AppComponent;
 import com.csab.daggermvpstarter.di.component.DaggerNoteDialogComponent;
@@ -32,7 +33,7 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     @Inject
     LayoutInflater layoutInflater;
 
-    private AlertDialog alertDialog;
+    private MaterialDialog alertDialog;
     private EditText editText;
 
     public static NoteDialogFragment newInstance() {
@@ -59,22 +60,25 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     @Override
     public void createDialog() {
         View view = layoutInflater.inflate(R.layout.dialog_add_note, null);
-        alertDialog = new AlertDialog.Builder(activity)
-                .setTitle(R.string.add_note)
-                .setView(view)
-                .setPositiveButton(R.string.btn_pos, new DialogInterface.OnClickListener() {
+        alertDialog = new MaterialDialog.Builder(activity)
+                .title(R.string.add_note)
+                .customView(view, false)
+                .positiveText(R.string.btn_pos)
+                .negativeText(R.string.btn_neg)
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onPositive(MaterialDialog dialog) {
+                        super.onPositive(dialog);
                         presenter.saveClick();
                     }
-                })
-                .setNegativeButton(R.string.btn_neg, new DialogInterface.OnClickListener() {
+
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onNegative(MaterialDialog dialog) {
+                        super.onNegative(dialog);
                         presenter.cancelClick();
                     }
                 })
-                .create();
+                .build();
         alertDialog.getWindow()
                 .clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
                             WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
