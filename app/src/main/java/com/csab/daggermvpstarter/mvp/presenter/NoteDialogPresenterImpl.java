@@ -7,16 +7,13 @@ import javax.inject.Inject;
 
 public class NoteDialogPresenterImpl implements NoteDialogPresenter {
 
-    @Inject
-    NoteDialogView view;
-    @Inject
-    NoteInteractor interactor;
-
-    public NoteDialogPresenterImpl() {
-    }
+    private NoteDialogView view;
+    private NoteInteractor interactor;
 
     @Inject
-    public NoteDialogPresenterImpl(NoteDialogView view) {
+    public NoteDialogPresenterImpl(NoteDialogView view, NoteInteractor interactor) {
+        this.view = view;
+        this.interactor = interactor;
     }
 
     @Override
@@ -39,9 +36,4 @@ public class NoteDialogPresenterImpl implements NoteDialogPresenter {
     public void cancelClick() {
         view.dismissDialog();
     }
-
-    public void setView(NoteDialogView view) {
-        this.view = view;
-    }
-
 }

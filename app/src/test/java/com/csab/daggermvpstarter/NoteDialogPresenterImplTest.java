@@ -1,31 +1,29 @@
 package com.csab.daggermvpstarter;
 
 
-import com.csab.daggermvpstarter.data.NoteRepo;
-import com.csab.daggermvpstarter.mvp.model.Note;
+import com.csab.daggermvpstarter.data.NoteInteractor;
 import com.csab.daggermvpstarter.mvp.presenter.NoteDialogPresenterImpl;
 import com.csab.daggermvpstarter.mvp.view.NoteDialogView;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.*;
 
 public class NoteDialogPresenterImplTest {
 
+    @Mock
     private NoteDialogView view;
-    private NoteRepo repo;
+    @Mock
+    private NoteInteractor interactor;
     private NoteDialogPresenterImpl presenter;
 
-    /* TODO: update for interactor/rx
     @Before
     public void setup() {
-        view = Mockito.mock(NoteDialogView.class);
-        repo = Mockito.mock(NoteRepo.class);
-        presenter = new NoteDialogPresenterImpl();
-        presenter.setView(view);
-        presenter.setRepo(repo);
+        MockitoAnnotations.initMocks(this);
+        presenter = new NoteDialogPresenterImpl(view, interactor);
     }
 
     @Test
@@ -37,11 +35,15 @@ public class NoteDialogPresenterImplTest {
 
     @Test
     public void presenterSaveClickCapturesTextAndDismissesTest() {
+        String text = "test!";
+        when(view.captureInputText()).thenReturn(text);
+
         presenter.saveClick();
         verify(view).captureInputText();
-        verify(repo).createNote(any(Note.class));
+        verify(interactor).createNote(text);
         verify(view).dismissDialog();
         verifyNoMoreInteractions(view);
+        verifyNoMoreInteractions(interactor);
     }
 
     @Test
@@ -50,7 +52,4 @@ public class NoteDialogPresenterImplTest {
         verify(view).dismissDialog();
         verifyNoMoreInteractions(view);
     }
-    */
-
-
 }

@@ -1,5 +1,8 @@
 package com.csab.daggermvpstarter.mvp.presenter;
 
+import com.csab.daggermvpstarter.rx.AppSchedulers;
+
+import rx.Observable;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -17,6 +20,16 @@ public class RxPresenter {
 
     protected void unsubscribe() {
         subscriptions.unsubscribe();
+    }
+
+    protected <T> Observable.Transformer<T, T> applySchedulers(final AppSchedulers schedulers) {
+        return new Observable.Transformer<T, T>() {
+            @Override
+            public Observable<T> call(Observable<T> observable) {
+                return observable.subscribeOn(schedulers.getSubscribingSched())
+                                 .observeOn(schedulers.getObservingSched());
+            }
+        };
     }
 
 }

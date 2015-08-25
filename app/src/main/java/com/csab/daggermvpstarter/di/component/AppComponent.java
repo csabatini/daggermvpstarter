@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.csab.daggermvpstarter.di.module.AppModule;
 import com.csab.daggermvpstarter.di.module.DbModule;
+import com.csab.daggermvpstarter.rx.AppSchedulers;
 import com.csab.daggermvpstarter.ui.BaseActivity;
 import com.google.gson.Gson;
 import com.squareup.otto.Bus;
@@ -19,5 +20,6 @@ import dagger.Component;
 public interface AppComponent {
     void inject(BaseActivity activity);
     Context context();
+    AppSchedulers schedulers();
     BriteDatabase database();
 }

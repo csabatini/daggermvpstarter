@@ -1,3 +1,3 @@
 DaggerMvpStarter
 ================
-MVP design pattern with Dagger 2 dependency injection
+Android sample app utilizing MVP and Dagger 2 dependency injection

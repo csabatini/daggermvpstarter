@@ -4,34 +4,34 @@ import com.csab.daggermvpstarter.R;
 import com.csab.daggermvpstarter.data.NoteInteractor;
 import com.csab.daggermvpstarter.mvp.model.Note;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
+import com.csab.daggermvpstarter.rx.AppSchedulers;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class NoteListPresenterImpl extends RxPresenter implements NoteListPresenter {
 
     private NoteListView view;
     private NoteInteractor interactor;
+    private AppSchedulers schedulers;
 
     @Inject
-    public NoteListPresenterImpl(NoteListView view, NoteInteractor interactor) {
+    public NoteListPresenterImpl(NoteListView view, NoteInteractor interactor,
+                                 AppSchedulers schedulers) {
         this.view = view;
         this.interactor = interactor;
+        this.schedulers = schedulers;
     }
 
     @Override
     public void resume() {
         Timber.d("resume - subscribing!");
         add(interactor.getNotes()
-                .subscribeOn(Schedulers.io())
-                // TODO: get schedulers hook working with AndroidSchedulers
-                //.observeOn(AndroidSchedulers.mainThread())
+                .compose(this.<List<Note>> applySchedulers(schedulers))
                 .subscribe(new NoteSubscriber()));
     }
 

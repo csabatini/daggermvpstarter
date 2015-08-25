@@ -4,6 +4,7 @@ import com.csab.daggermvpstarter.data.NoteInteractor;
 import com.csab.daggermvpstarter.mvp.model.Note;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenterImpl;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;
+import com.csab.daggermvpstarter.rx.AppSchedulers;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,6 @@ import java.util.List;
 import rx.Observable;
 
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
 
 public class NoteListPresenterImplTest {
 
@@ -30,7 +30,7 @@ public class NoteListPresenterImplTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        presenter = new NoteListPresenterImpl(view, interactor);
+        presenter = new NoteListPresenterImpl(view, interactor, AppSchedulers.newTestInstance());
     }
 
     @Test

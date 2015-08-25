@@ -3,6 +3,7 @@ package com.csab.daggermvpstarter.di.module;
 import android.content.Context;
 
 import com.csab.daggermvpstarter.App;
+import com.csab.daggermvpstarter.rx.AppSchedulers;
 
 import javax.inject.Singleton;
 
@@ -20,8 +21,14 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public Context provideApplicationContext() {
+    public Context provideAppContext() {
         return this.app;
+    }
+
+    @Provides
+    @Singleton
+    public AppSchedulers provideAppSchedulers() {
+        return AppSchedulers.newLiveInstance();
     }
 
 }

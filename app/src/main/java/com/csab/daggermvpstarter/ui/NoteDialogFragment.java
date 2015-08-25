@@ -2,16 +2,12 @@ package com.csab.daggermvpstarter.ui;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.csab.daggermvpstarter.R;
@@ -31,7 +27,7 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     @Inject
     Activity activity;
     @Inject
-    LayoutInflater layoutInflater;
+    LayoutInflater inflater;
 
     private MaterialDialog alertDialog;
     private EditText editText;
@@ -53,16 +49,11 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     }
 
     @Override
-    public void showToast(String message) {
-        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void createDialog() {
-        View view = layoutInflater.inflate(R.layout.dialog_add_note, null);
+        View view = inflater.inflate(R.layout.dialog_add_note, null);
         alertDialog = new MaterialDialog.Builder(activity)
                 .title(R.string.add_note)
-                .customView(view, false)
+                .customView(R.layout.dialog_add_note, false)
                 .positiveText(R.string.btn_pos)
                 .negativeText(R.string.btn_neg)
                 .callback(new MaterialDialog.ButtonCallback() {
@@ -79,11 +70,6 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
                     }
                 })
                 .build();
-        alertDialog.getWindow()
-                .clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
-                            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        alertDialog.getWindow()
-                .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE );
         editText = (EditText) view.findViewById(R.id.noteText);
     }
 
