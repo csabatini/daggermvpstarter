@@ -7,6 +7,7 @@ import java.util.List;
 public interface NoteListView {
     void showNotes(List<Note> notes);
     void showToast(String message);
-    void showSnack(int msgResId);
+    void showSnack(String message);
     void showDialog();
+    void removeNoteFromList(int position);
 }

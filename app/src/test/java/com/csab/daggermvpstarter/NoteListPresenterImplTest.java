@@ -54,9 +54,13 @@ public class NoteListPresenterImplTest {
     }
 
     @Test
-    public void presenterNoteClickShowsToast() {
-        presenter.noteClick(1);
-        verify(view).showSnack(R.string.note_clicked);
+    public void presenterVerifySwipeShowsSnackRemovesNote() {
+        presenter.noteSwipe(0, Constants.DIRECTION_LEFT);
+        verify(view).showSnack("Position 0 swiped LEFT!");
+        verify(view).removeNoteFromList(0);
+        presenter.noteSwipe(1, Constants.DIRECTION_RIGHT);
+        verify(view).showSnack("Position 1 swiped RIGHT!");
+        verify(view).removeNoteFromList(1);
         verifyNoMoreInteractions(view);
     }
 

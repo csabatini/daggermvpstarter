@@ -79,14 +79,18 @@ public class NoteListFragment extends BaseFragment
     }
 
     @Override
+    public void removeNoteFromList(int position) {
+        adapter.removeItem(position);
+    }
+
+    @Override
     public void showToast(String message) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showSnack(int resId) {
-        Snackbar.make(fab, activity.getString(resId), Snackbar.LENGTH_SHORT)
-                .show();
+    public void showSnack(String message) {
+        Snackbar.make(fab, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

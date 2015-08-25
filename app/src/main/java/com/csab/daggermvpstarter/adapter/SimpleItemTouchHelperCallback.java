@@ -3,6 +3,8 @@ package com.csab.daggermvpstarter.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+import com.csab.daggermvpstarter.Constants;
+
 public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     private final ItemTouchHelperAdapter adapter;
@@ -35,7 +37,9 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-        adapter.onItemDismissed(viewHolder.getAdapterPosition());
+        String dirString = (direction == ItemTouchHelper.START) ?
+                Constants.DIRECTION_LEFT : Constants.DIRECTION_RIGHT;
+        adapter.onItemSwiped(viewHolder.getAdapterPosition(), dirString);
     }
 
 }

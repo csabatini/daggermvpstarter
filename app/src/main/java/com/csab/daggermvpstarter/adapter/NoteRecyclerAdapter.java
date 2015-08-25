@@ -38,12 +38,6 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(RecyclerView.ViewHolder vh, final int position) {
         ViewHolder holder = (ViewHolder) vh;
         renderNote(notes.get(position), holder);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.noteClick(position);
-            }
-        });
     }
 
     @Override
@@ -52,14 +46,18 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
-    public void onItemDismissed(int position) {
-        notes.remove(position);
-        notifyItemRemoved(position);
+    public void onItemSwiped(int position, String direction) {
+        presenter.noteSwipe(position, direction);
     }
 
     public void updateItems(List<Note> notes) {
         this.notes = notes;
         notifyDataSetChanged();
+    }
+
+    public void removeItem(int position) {
+        notes.remove(position);
+        notifyItemRemoved(position);
     }
 
     public void renderNote(Note note, ViewHolder holder) {

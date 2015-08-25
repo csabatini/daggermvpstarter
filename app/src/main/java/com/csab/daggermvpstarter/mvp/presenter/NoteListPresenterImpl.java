@@ -31,7 +31,7 @@ public class NoteListPresenterImpl extends RxPresenter implements NoteListPresen
     public void resume() {
         Timber.d("resume - subscribing!");
         add(interactor.getNotes()
-                .compose(this.<List<Note>> applySchedulers(schedulers))
+                .compose(this.<List<Note>>applySchedulers(schedulers))
                 .subscribe(new NoteSubscriber()));
     }
 
@@ -47,8 +47,9 @@ public class NoteListPresenterImpl extends RxPresenter implements NoteListPresen
     }
 
     @Override
-    public void noteClick(int position) {
-        view.showSnack(R.string.note_clicked);
+    public void noteSwipe(int position, String direction) {
+        view.showSnack("Position " + position + " swiped " + direction + "!");
+        view.removeNoteFromList(position);
     }
 
     public class NoteSubscriber extends Subscriber<List<Note>> {
