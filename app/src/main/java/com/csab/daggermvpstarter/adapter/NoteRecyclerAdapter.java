@@ -16,7 +16,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class NoteRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class NoteRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
+        implements ItemTouchHelperAdapter {
 
     private NoteListPresenter presenter;
 
@@ -48,6 +49,12 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public int getItemCount() {
         return notes.size();
+    }
+
+    @Override
+    public void onItemDismissed(int position) {
+        notes.remove(position);
+        notifyItemRemoved(position);
     }
 
     public void updateItems(List<Note> notes) {
