@@ -1,8 +1,10 @@
 package com.csab.daggermvpstarter.di.module;
 
+import android.app.Activity;
+
 import com.csab.daggermvpstarter.adapter.NoteRecyclerAdapter;
-import com.csab.daggermvpstarter.data.NoteInteractor;
-import com.csab.daggermvpstarter.data.NoteInteractorImpl;
+import com.csab.daggermvpstarter.mvp.interactor.NoteInteractor;
+import com.csab.daggermvpstarter.mvp.interactor.NoteInteractorImpl;
 import com.csab.daggermvpstarter.di.ActivityScope;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenter;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenterImpl;
@@ -34,8 +36,8 @@ public class NoteListModule {
     public NoteListPresenter providePresenter(NoteListPresenterImpl presenter) { return presenter; }
 
     @Provides @ActivityScope
-    public NoteRecyclerAdapter provideAdapter(NoteListPresenter presenter) {
-        return new NoteRecyclerAdapter(presenter);
+    public NoteRecyclerAdapter provideAdapter(Activity activity, NoteListPresenter presenter) {
+        return new NoteRecyclerAdapter(activity, presenter);
     }
 
 }

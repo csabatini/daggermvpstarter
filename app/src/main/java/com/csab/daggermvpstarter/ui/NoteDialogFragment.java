@@ -53,7 +53,7 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
         View view = inflater.inflate(R.layout.dialog_add_note, null);
         alertDialog = new MaterialDialog.Builder(activity)
                 .title(R.string.add_note)
-                .customView(R.layout.dialog_add_note, false)
+                .customView(view, false)
                 .positiveText(R.string.btn_pos)
                 .negativeText(R.string.btn_neg)
                 .callback(new MaterialDialog.ButtonCallback() {

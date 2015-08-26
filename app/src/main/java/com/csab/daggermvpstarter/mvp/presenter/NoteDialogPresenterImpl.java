@@ -1,9 +1,11 @@
 package com.csab.daggermvpstarter.mvp.presenter;
 
-import com.csab.daggermvpstarter.data.NoteInteractor;
+import com.csab.daggermvpstarter.mvp.interactor.NoteInteractor;
 import com.csab.daggermvpstarter.mvp.view.NoteDialogView;
 
 import javax.inject.Inject;
+
+import timber.log.Timber;
 
 public class NoteDialogPresenterImpl implements NoteDialogPresenter {
 

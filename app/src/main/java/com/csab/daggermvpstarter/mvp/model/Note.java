@@ -1,21 +1,28 @@
 package com.csab.daggermvpstarter.mvp.model;
 
-import java.util.Date;
-
-// TODO implement joda time to format/standardize dates
 public class Note {
 
+    private Integer _id;
     private String contents;
-    private Date createdDate;
+    private String createdDate;
 
-    public Note(String contents) {
-        this.contents = contents;
-        this.createdDate = new Date();
-    }
-
-    public Note(String contents, Date createdDate) {
+    public Note(String contents, String createdDate) {
         this.contents = contents;
         this.createdDate = createdDate;
+    }
+
+    public Note(Integer _id, String contents, String createdDate) {
+        this._id = _id;
+        this.contents = contents;
+        this.createdDate = createdDate;
+    }
+
+    public Integer getId() {
+        return _id;
+    }
+
+    public void setId(Integer _id) {
+        this._id = _id;
     }
 
     public String getContents() {
@@ -26,11 +33,11 @@ public class Note {
         this.contents = contents;
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 

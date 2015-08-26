@@ -1,6 +1,6 @@
 package com.csab.daggermvpstarter;
 
-import com.csab.daggermvpstarter.data.NoteInteractor;
+import com.csab.daggermvpstarter.mvp.interactor.NoteInteractor;
 import com.csab.daggermvpstarter.mvp.model.Note;
 import com.csab.daggermvpstarter.mvp.presenter.NoteListPresenterImpl;
 import com.csab.daggermvpstarter.mvp.view.NoteListView;

@@ -1,7 +1,7 @@
 package com.csab.daggermvpstarter.di.component;
 
 import com.csab.daggermvpstarter.adapter.NoteRecyclerAdapter;
-import com.csab.daggermvpstarter.data.NoteInteractor;
+import com.csab.daggermvpstarter.mvp.interactor.NoteInteractor;
 import com.csab.daggermvpstarter.di.ActivityScope;
 import com.csab.daggermvpstarter.di.module.ActivityModule;
 import com.csab.daggermvpstarter.di.module.NoteListModule;

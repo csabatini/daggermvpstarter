@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.csab.daggermvpstarter.R;
 import com.csab.daggermvpstarter.adapter.NoteRecyclerAdapter;
+import com.csab.daggermvpstarter.adapter.SimpleDividerItemDecoration;
 import com.csab.daggermvpstarter.adapter.SimpleItemTouchHelperCallback;
 import com.csab.daggermvpstarter.di.component.AppComponent;
 import com.csab.daggermvpstarter.di.component.DaggerNoteListComponent;
@@ -54,6 +55,7 @@ public class NoteListFragment extends BaseFragment
         ButterKnife.bind(this, view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(activity));
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper helper = new ItemTouchHelper(callback);

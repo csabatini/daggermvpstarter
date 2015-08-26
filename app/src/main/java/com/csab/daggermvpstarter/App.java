@@ -8,6 +8,8 @@ import com.csab.daggermvpstarter.di.module.AppModule;
 import com.csab.daggermvpstarter.di.module.DbModule;
 import com.squareup.leakcanary.LeakCanary;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
 import timber.log.Timber;
 
 public class App extends Application {
@@ -18,6 +20,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         setupGraph();
+        JodaTimeAndroid.init(this);
         LeakCanary.install(this);
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());

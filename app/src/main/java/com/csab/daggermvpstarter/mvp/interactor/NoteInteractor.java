@@ -1,4 +1,4 @@
-package com.csab.daggermvpstarter.data;
+package com.csab.daggermvpstarter.mvp.interactor;
 
 import com.csab.daggermvpstarter.mvp.model.Note;
 
